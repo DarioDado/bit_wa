@@ -2,6 +2,13 @@
 import Show from '../entities/Show.js';
 
 export const fetchShows = () => {
+    const jsonListShow = window.localStorage.getItem('listShow');
+    const listShow = JSON.parse(jsonListShow)
+    if (listShow) {
+        return new Promise((resolve, reject) => {
+            resolve(listShow);
+        });
+    }
     return fetch('http://api.tvmaze.com/shows')
         .then(response => {
             return response.json();
@@ -11,6 +18,7 @@ export const fetchShows = () => {
                 .map(({ id, name, image }) => {
                     return new Show(id, name, image.original);
                 });
+            window.localStorage.setItem('listShow', JSON.stringify(listShow));
             return listShow;
         });
 }
@@ -40,9 +48,9 @@ export const fetchShowInfo = id => {
 }
 
 export const fetchSearchedShows = searchValue => {
-    return fetch (`http://api.tvmaze.com/search/shows?q=${searchValue}`)
-        .then(response =>  response.json())
-        .then (data =>{
+    return fetch(`http://api.tvmaze.com/search/shows?q=${searchValue}`)
+        .then(response => response.json())
+        .then(data => {
             const listShow = data.map(({ show }) => {
                 const imageSrc = show.image
                     ? show.image.original
