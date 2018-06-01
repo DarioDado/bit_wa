@@ -1,0 +1,13 @@
+body {
+    text-align:  center;
+}
+
+.quote-list {
+    background-color: tomato
+}
+
+.quote-list li {
+    color: white;
+    list-style: none;
+    font-size: 30px;
+}
