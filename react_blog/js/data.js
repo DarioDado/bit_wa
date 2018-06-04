@@ -1,4 +1,4 @@
-const postsList = [
+const data = [
     {
         "id": 1,
         "title": "adipisicing ad fugiat",
@@ -50,59 +50,3 @@ const postsList = [
         "body": "Bla bla 2"
     }
 ];
-
-
-
-const Header = () => {
-    return (
-        <nav>
-            <div className="nav-wrapper">
-                <a href="#" className="brand-logo center">My React Blog</a>
-            </div>
-        </nav>
-    )
-}
-
-
-const Blog = props => {
-  const {title, body} = props.blog;
-  return (
-    <div className="card blue-grey darken-1">
-       <span className="card-title">{title}</span>
-       <p className="card-content white-text">{body}</p>
-   </div>
- );
-}
-
-
-
-const BlogList = (props) => {
-    return (
-
-        <div className="row">
-            <div className="col6">
-                <div className="card-content white-text">
-                <div className="container">
-                    {props.list.map((blog) =>
-                     (<Blog blog={blog} key={blog.id} />))}
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    )
-}
-
-const App = () => {
-    return (
-        <div>
-            <Header />
-            <BlogList list={postsList} />
-        </div>
-    )
-}
-
-
-
-const root = document.querySelector(".root");
-ReactDOM.render(<App />, root);
