@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getUsers } from './../../services/userService';
-import { UserItem } from './UserItem'
+import { UserItem } from './UserItem';
+import { UserCard } from './UserCard';
 
 export class UserList extends Component {
     constructor(props) {
@@ -20,7 +21,7 @@ export class UserList extends Component {
             })
     }
     render() {
-        const userItems = this.state.users.map(user => <UserItem userData={user} key={user.getId()} />)
+        const userItems = this.state.users.map(user => <UserCard userData={user} key={user.getId()} />)
         return (
             <div className="container">
                 <div className="row">

@@ -6,7 +6,7 @@ export const UserItem = props => {
         <div className="col s12">
             <div className="card horizontal">
                 <div className="card-image card-img-wrapper">
-                    <img id="img" src={user.avatar.thumbnail} />
+                    <img id="img" alt="profile img" src={user.avatar.thumbnail} />
                 </div>
                 <div className="card-stacked">
                     <div className="card-content">
