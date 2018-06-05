@@ -4,8 +4,8 @@ import { UserItem } from './UserItem';
 import { UserCard } from './UserCard';
 
 export class UserList extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
 
         this.state = {
             users: []
