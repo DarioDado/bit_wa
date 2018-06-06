@@ -10,7 +10,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      view: "view_module",
+      view: window.localStorage.getItem('view') || "view_list",
       users: []
     }
   }
@@ -32,6 +32,7 @@ class App extends Component {
 
   onChangeViewHandler = (view) => {
     view = (view === "view_module") ? "view_list" : "view_module"
+    window.localStorage.setItem('view', view);
     this.setState({ view })
   }
 
