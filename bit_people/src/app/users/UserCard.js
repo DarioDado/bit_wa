@@ -6,6 +6,7 @@ export const UserCard = props => {
         return null;
     }
     const user = props.userData;
+    console.log("card");
     return (
         <div className="col s4">
             <div className="card">

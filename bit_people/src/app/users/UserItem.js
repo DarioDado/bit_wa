@@ -2,6 +2,7 @@ import React from 'react';
 
 export const UserItem = props => {
     const user = props.userData;
+    console.log("item");
     return (
         <div className="col s12">
             <div className="card horizontal">
