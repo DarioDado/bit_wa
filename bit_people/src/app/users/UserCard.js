@@ -6,10 +6,10 @@ export const UserCard = props => {
         return null;
     }
     const user = props.userData;
-    console.log("card");
+    const style = (user.gender === "female") ? {backgroundColor: "#FFEAEE"} : {};
     return (
         <div className="col s4">
-            <div className="card">
+            <div className="card" style={style}>
                 <div className="card-image">
                     <img src={user.avatar.large} alt="user"/>
                     <span className="card-title">{user.firstName}</span>

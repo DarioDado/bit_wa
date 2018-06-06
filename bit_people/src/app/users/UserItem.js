@@ -2,10 +2,10 @@ import React from 'react';
 
 export const UserItem = props => {
     const user = props.userData;
-    console.log("item");
+    const style = (user.gender === "female") ? {backgroundColor: "#FFEAEE"} : {};
     return (
         <div className="col s12">
-            <div className="card horizontal">
+            <div className="card horizontal" style={style}>
                 <div className="card-image card-img-wrapper">
                     <img id="img" alt="profile img" src={user.avatar.thumbnail} />
                 </div>

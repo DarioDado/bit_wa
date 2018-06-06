@@ -6,8 +6,7 @@ export const getUsers = () => {
         .then(res => res.json())
         .then(usersData => {
             return usersData.results.map(user => {
-                return new User (user.id, user.picture, user.name.first, user.name.last, user.email, user.dob)
-            })
-        })
-        .catch(err => "Network problem")
+                return new User (user.id, user.gender, user.picture, user.name.first, user.name.last, user.email, user.dob);
+            });
+        });
 }
