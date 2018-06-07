@@ -24,14 +24,17 @@ export class UserList extends React.Component {
     render(){
 
         let usersData;
-        if(this.props.noFilterResults) {
-            usersData = [];
-        } else {
-            usersData = (this.props.filteredUsers.length === 0) ? this.props.users : this.props.filteredUsers;
-        }
+        usersData = (this.props.filteredUsers.length === 0) ? this.props.users : this.props.filteredUsers;
+        
         const userItems = usersData.map((user, i) => <UserItem userData={user} key={i} />);
         const userCards = usersData.map((user, i) => <UserCard userData={user} key={i} />);
         
+        const users = this.props.noFilterResults
+            ?   <div className="no-result">
+                    <p><i className="material-icons no-result-icon">sentiment_neutral</i></p>
+                    <p className="no-result-msg">We couldn't find any people matching your search</p>
+                </div>
+            : (this.props.view === "view_module" ? userItems : userCards)
 
         return (
             <div className="container main-content">
@@ -51,7 +54,7 @@ export class UserList extends React.Component {
                     </form>
                 </div>
                 <div className="row">
-                    {this.props.view === "view_module" ? userItems : userCards}
+                    {users}
                 </div>
             </div>
         )
