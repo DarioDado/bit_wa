@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Home.css';
 import Header from './partials/Header';
-import { getUsers } from './../services/userService';
+import { getUsers, saveUsers, getUsersFromStorage, setViewMode, getViewMode, setLastUpdate } from './../services/userService';
 import Footer from './partials/Footer';
 import { UserList } from './users/UserList';
 import Loading from './partials/Loading';
@@ -11,7 +11,7 @@ class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      view: window.localStorage.getItem('view') || "view_list",
+      view: getViewMode() || "view_list",
       users: [],
       filteredUsers: [],
       noFilterResults: false,
@@ -23,6 +23,7 @@ class Home extends Component {
     getUsers()
       .then(users => {
         this.setState({ users, loading: false });
+        saveUsers(users);
       })
   }
 
@@ -46,16 +47,22 @@ class Home extends Component {
   onRefreshUsersHandler = () => {
     this.setState({loading: true}, ()=>{
       this.loadUsers();
+      setLastUpdate();
     })
   }
 
   componentDidMount = () => {
-    this.loadUsers();
+    const users = getUsersFromStorage();
+    if (users) {
+      this.setState({users, loading: false})
+    } else {
+      this.loadUsers();
+    }
   }
 
   onChangeViewHandler = (view) => {
     view = (view === "view_module") ? "view_list" : "view_module"
-    window.localStorage.setItem('view', view);
+    setViewMode(view);
     this.setState({ view })
   }
 
