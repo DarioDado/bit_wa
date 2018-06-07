@@ -28,7 +28,7 @@ class Home extends Component {
 
   onChangeSearchInputHandler = (value) => {
     const filteredUsers = this.state.users.filter((user) => {
-      return user.firstName.includes(value);
+      return user.getFullName().toLowerCase().includes(value.toLowerCase());
     })
     if (filteredUsers.length === 0) {
       this.setState({

@@ -3,8 +3,8 @@ export class User {
         this.id = id;
         this.gender = gender;
         this.avatar = avatar;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstName = firstName[0].toUpperCase() + firstName.substr(1);
+        this.lastName = lastName[0].toUpperCase() + lastName.substr(1);
         this.email = email;
         this.dob = new Date (dob);
     }
