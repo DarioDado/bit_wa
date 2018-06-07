@@ -4,6 +4,7 @@ import Header from './partials/Header';
 import { getUsers } from './../services/userService';
 import Footer from './partials/Footer';
 import { UserList } from './users/UserList';
+import Loading from './partials/Loading';
 
 class App extends Component {
 
@@ -13,14 +14,15 @@ class App extends Component {
       view: window.localStorage.getItem('view') || "view_list",
       users: [],
       filteredUsers: [],
-      noFilterResults: false
+      noFilterResults: false,
+      loading: true
     }
   }
 
   loadUsers = () => {
     getUsers()
       .then(users => {
-        this.setState({ users });
+        this.setState({ users, loading: false });
       })
   }
 
@@ -42,7 +44,9 @@ class App extends Component {
   }
 
   onRefreshUsersHandler = () => {
-    this.loadUsers();
+    this.setState({loading: true}, ()=>{
+      this.loadUsers();
+    })
   }
 
   componentDidMount = () => {
@@ -56,23 +60,38 @@ class App extends Component {
   }
 
   render() {
-    return (
-      <React.Fragment>
-        <Header
-          changeView={this.onChangeViewHandler}
-          view={this.state.view}
-          refreshUsers={this.onRefreshUsersHandler}
-        />
-        <UserList 
-          view={this.state.view} 
-          users={this.state.users}
-          filteredUsers={this.state.filteredUsers}
-          filterUsers={this.onChangeSearchInputHandler}
-          noFilterResults={this.state.noFilterResults} 
-        />
-        <Footer />
-      </React.Fragment>
-    );
+    if (this.state.loading) {
+      return (
+        <React.Fragment>
+          <Header
+            changeView={this.onChangeViewHandler}
+            view={this.state.view}
+            refreshUsers={this.onRefreshUsersHandler}
+          />
+          <Loading />
+          <Footer />
+        </React.Fragment>
+      );
+    } else {
+      return (
+        <React.Fragment>
+          <Header
+            changeView={this.onChangeViewHandler}
+            view={this.state.view}
+            refreshUsers={this.onRefreshUsersHandler}
+          />
+          <UserList 
+            view={this.state.view} 
+            users={this.state.users}
+            filteredUsers={this.state.filteredUsers}
+            filterUsers={this.onChangeSearchInputHandler}
+            noFilterResults={this.state.noFilterResults} 
+          />
+          <Footer />
+        </React.Fragment>
+      );
+
+    }
   }
 }
 

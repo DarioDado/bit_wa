@@ -12,25 +12,13 @@ export class UserList extends React.Component {
     }
 
     onChangeHandler = event => {
-        const p = new Promise((res, rej) => {
-            this.setState({
-                inputValue: event.target.value
-            })
-            res();
-        })
-            
-        p.then(() => {
-            console.log(this.state.inputValue);
-            this.props.filterUsers(this.state.inputValue);
-        })
+        const newValue =  event.target.value;
 
+        this.setState({
+            inputValue: newValue
+        })
         
-        // this.setState({
-        //     inputValue: event.target.value
-        // })
-        
-        // console.log(this.state.inputValue);
-        
+        this.props.filterUsers(newValue);
     }
 
     render(){
