@@ -1,0 +1,9 @@
+.stats {
+    text-align: right;
+    font-size: 25px;
+    color: #a3a5a7;
+}
+
+.stats p {
+    margin: 0;
+}

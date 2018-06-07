@@ -1,6 +1,8 @@
 import React from 'react';
 import { UserItem } from './UserItem';
 import { UserCard } from './UserCard';
+import { getGenderStats } from '../../services/userService';
+import './UserList.css';
 
 export class UserList extends React.Component {
     constructor(props) {
@@ -23,9 +25,12 @@ export class UserList extends React.Component {
 
     render(){
 
+        
         let usersData;
         usersData = (this.props.filteredUsers.length === 0) ? this.props.users : this.props.filteredUsers;
         
+        const stats = getGenderStats(usersData);
+
         const userItems = usersData.map((user, i) => <UserItem userData={user} key={i} />);
         const userCards = usersData.map((user, i) => <UserCard userData={user} key={i} />);
         
@@ -52,6 +57,9 @@ export class UserList extends React.Component {
                             </div>
                         </div>
                     </form>
+                </div>
+                <div className="stats">
+                    <p>Male: {stats.male} Female: {stats.female}</p>
                 </div>
                 <div className="row">
                     {users}

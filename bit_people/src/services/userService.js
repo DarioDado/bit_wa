@@ -43,3 +43,17 @@ export const setLastUpdate = () => {
 export const getLastUpdate = () => {
     return new Date(window.localStorage.getItem('lastUpdate'));
 }
+
+export const getGenderStats = (users) => {
+    let male = 0;
+    let female = 0;
+    users.forEach(user => {
+        if (user.gender === 'female') {
+            female += 1;
+        } else {
+            male += 1;
+        }
+    })
+    return {male, female};
+
+}
