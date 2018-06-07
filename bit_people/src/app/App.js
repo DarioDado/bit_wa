@@ -11,7 +11,9 @@ class App extends Component {
     super(props)
     this.state = {
       view: window.localStorage.getItem('view') || "view_list",
-      users: []
+      users: [],
+      filteredUsers: [],
+      noFilterResults: false
     }
   }
 
@@ -20,6 +22,23 @@ class App extends Component {
       .then(users => {
         this.setState({ users });
       })
+  }
+
+  onChangeSearchInputHandler = (value) => {
+    const filteredUsers = this.state.users.filter((user) => {
+      return user.firstName.includes(value);
+    })
+    if (filteredUsers.length === 0) {
+      this.setState({
+        noFilterResults: true
+      })
+    } else {
+      this.setState({
+        noFilterResults: false,
+        filteredUsers: filteredUsers
+      });
+    }
+
   }
 
   onRefreshUsersHandler = () => {
@@ -44,7 +63,13 @@ class App extends Component {
           view={this.state.view}
           refreshUsers={this.onRefreshUsersHandler}
         />
-        <UserList view={this.state.view} users={this.state.users} />
+        <UserList 
+          view={this.state.view} 
+          users={this.state.users}
+          filteredUsers={this.state.filteredUsers}
+          filterUsers={this.onChangeSearchInputHandler}
+          noFilterResults={this.state.noFilterResults} 
+        />
         <Footer />
       </React.Fragment>
     );
