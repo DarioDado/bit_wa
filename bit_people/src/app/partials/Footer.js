@@ -9,11 +9,11 @@ const Footer = (props) => {
     const timeFromLastUpdate = Moment(lastUpdate).fromNow(); 
     return (
 
-        <footer class="page-footer">
-            <div class="footer-copyright">
-                <div class="container">
+        <footer className="page-footer">
+            <div className="footer-copyright">
+                <div className="container">
                     © 2014 Copyright Text
-                    <span class="grey-text text-lighten-4 right" >Last update:{timeFromLastUpdate}</span>
+                    <span className="grey-text text-lighten-4 right" >Last update:{timeFromLastUpdate}</span>
                 </div>
             </div>
         </footer>

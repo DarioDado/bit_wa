@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './Home.css';
 import Header from './partials/Header';
 import { getUsers, saveUsers, getUsersFromStorage, setViewMode, getViewMode, setLastUpdate } from './../services/userService';
@@ -11,10 +11,8 @@ class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      view: getViewMode() || "view_list",
+      gridLayout: getViewMode(),
       users: [],
-      filteredUsers: [],
-      noFilterResults: false,
       loading: true
     }
   }
@@ -27,25 +25,8 @@ class Home extends Component {
       })
   }
 
-  onChangeSearchInputHandler = (value) => {
-    const filteredUsers = this.state.users.filter((user) => {
-      return user.getFullName().toLowerCase().includes(value.toLowerCase());
-    })
-    if (filteredUsers.length === 0) {
-      this.setState({
-        noFilterResults: true
-      })
-    } else {
-      this.setState({
-        noFilterResults: false,
-        filteredUsers: filteredUsers
-      });
-    }
-
-  }
-
   onRefreshUsersHandler = () => {
-    this.setState({loading: true}, ()=>{
+    this.setState({ loading: true }, () => {
       this.loadUsers();
       setLastUpdate();
     })
@@ -54,53 +35,42 @@ class Home extends Component {
   componentDidMount = () => {
     const users = getUsersFromStorage();
     if (users) {
-      this.setState({users, loading: false})
+      this.setState({ users, loading: false })
     } else {
       this.loadUsers();
     }
   }
 
-  onChangeViewHandler = (view) => {
-    view = (view === "view_module") ? "view_list" : "view_module"
-    setViewMode(view);
-    this.setState({ view })
-  }
+  onLayoutChange = () => {
+    const newGridLayoutState = !this.state.gridLayout;
+    this.setState({gridLayout: newGridLayoutState}, () => {
+      setViewMode(newGridLayoutState);
+    });
+
+  };
 
   render() {
-    if (this.state.loading) {
-      return (
-        <React.Fragment>
-          <Header
-            changeView={this.onChangeViewHandler}
-            view={this.state.view}
-            refreshUsers={this.onRefreshUsersHandler}
-            displayButtons={true}
-          />
-          <Loading />
-          <Footer />
-        </React.Fragment>
-      );
-    } else {
-      return (
-        <React.Fragment>
-          <Header
-            changeView={this.onChangeViewHandler}
-            view={this.state.view}
-            refreshUsers={this.onRefreshUsersHandler}
-            displayButtons={true}
-          />
-          <UserList 
-            view={this.state.view} 
-            users={this.state.users}
-            filteredUsers={this.state.filteredUsers}
-            filterUsers={this.onChangeSearchInputHandler}
-            noFilterResults={this.state.noFilterResults} 
-          />
-          <Footer />
-        </React.Fragment>
-      );
+    const { loading, gridLayout, users } = this.state;
 
-    }
+    return (
+      <Fragment>
+        <Header
+          changeLayout={this.onLayoutChange}
+          gridLayout={gridLayout}
+          refreshUsers={this.onRefreshUsersHandler}
+          displayButtons={true}
+        />
+        { 
+          loading
+            ? <Loading />
+            : <UserList
+                gridLayout={gridLayout}
+                users={users}
+              /> 
+        }
+        <Footer />
+      </Fragment>
+    );
   }
 }
 

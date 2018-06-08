@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 const Header = (props) => {
-    const { title, changeView, view, refreshUsers, displayButtons } = props;
+    const { title, changeLayout, gridLayout, refreshUsers, displayButtons } = props;
 
     
     const changeViewHandler = e => {
         e.preventDefault();
-        changeView(view);
+        changeLayout();
     }
     
     const refreshUsersHandler = e => {
@@ -20,7 +20,7 @@ const Header = (props) => {
         ? <ul className="right hide-on-med-and-down">
             <li><Link to='/about'>About</Link></li>
             <li><a href="#!" onClick={refreshUsersHandler}><i className="material-icons">refresh</i></a></li>
-            <li><a href="#!" onClick={changeViewHandler}><i className="material-icons">{view}</i></a></li>
+            <li><a href="#!" onClick={changeViewHandler}><i className="material-icons">{gridLayout ? 'view_list' : 'view_module'}</i></a></li>
         </ul>
         : null;
 

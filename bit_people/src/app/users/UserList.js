@@ -10,36 +10,46 @@ export class UserList extends React.Component {
         this.state = {
             inputValue: "",
         }
-
     }
 
     onChangeHandler = event => {
-        const newValue =  event.target.value;
-
-        this.setState({
-            inputValue: newValue
-        })
-        
-        this.props.filterUsers(newValue);
+         this.setState({
+            inputValue: event.target.value
+        });
     }
 
+    renderUsers = (users) => {
+        const { gridLayout } = this.props;
+
+        return users.map((user, i) => (
+            gridLayout 
+                ? <UserCard userData={user} key={i} />
+                : <UserItem userData={user} key={i} />
+        ))
+    }
+    
+    renderNoResults = () => (
+        <div className="no-result">
+            <p><i className="material-icons no-result-icon">sentiment_neutral</i></p>
+            <p className="no-result-msg">We couldn't find any people matching your search</p>
+        </div>
+    );
+
+    renderStats = (users, stats) => {
+        return users.length
+            ? (<div className="col s12 stats">
+                <p>Male: {stats.male} Female: {stats.female}</p>
+            </div>)
+            : null
+    } 
+
     render(){
-
+        const { inputValue } = this.state;
         
-        let usersData;
-        usersData = (this.props.filteredUsers.length === 0) ? this.props.users : this.props.filteredUsers;
+        const users = this.props.users
+        .filter((user) => user.getFullName().toLowerCase().includes(inputValue.toLowerCase()))
         
-        const stats = getGenderStats(usersData);
-
-        const userItems = usersData.map((user, i) => <UserItem userData={user} key={i} />);
-        const userCards = usersData.map((user, i) => <UserCard userData={user} key={i} />);
-        
-        const users = this.props.noFilterResults
-            ?   <div className="no-result">
-                    <p><i className="material-icons no-result-icon">sentiment_neutral</i></p>
-                    <p className="no-result-msg">We couldn't find any people matching your search</p>
-                </div>
-            : (this.props.view === "view_module" ? userItems : userCards)
+        const stats = getGenderStats(users);
 
         return (
             <div className="container main-content">
@@ -58,11 +68,14 @@ export class UserList extends React.Component {
                         </div>
                     </form>
                 </div>
-                <div className="stats">
-                    <p>Male: {stats.male} Female: {stats.female}</p>
-                </div>
                 <div className="row">
-                    {users}
+                    {this.renderStats(users, stats)}
+                    
+                    { 
+                        users.length
+                            ? this.renderUsers(users)
+                            : this.renderNoResults()
+                    }
                 </div>
             </div>
         )

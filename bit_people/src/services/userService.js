@@ -28,11 +28,11 @@ export const getUsersFromStorage = () => {
 }
 
 export const setViewMode = view => {
-    window.localStorage.setItem('view', view);
+    window.localStorage.setItem('gridLayout', view);
 }
 
 export const getViewMode = () => {
-    return window.localStorage.getItem('view');
+    return JSON.parse(window.localStorage.getItem('gridLayout'));
 }
 
 export const setLastUpdate = () => {
@@ -47,6 +47,7 @@ export const getLastUpdate = () => {
 export const getGenderStats = (users) => {
     let male = 0;
     let female = 0;
+
     users.forEach(user => {
         if (user.gender === 'female') {
             female += 1;
@@ -54,6 +55,7 @@ export const getGenderStats = (users) => {
             male += 1;
         }
     })
+
     return {male, female};
 
 }
