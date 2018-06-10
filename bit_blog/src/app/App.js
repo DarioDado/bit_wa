@@ -4,6 +4,7 @@ import Home from './Home';
 import SinglePost from './posts/SinglePost';
 import Authors from './authors/Authors';
 import SingleAuthor from './authors/SingleAuthor';
+import About from './About';
 import './App.css';
 
 class App extends Component {
@@ -14,6 +15,7 @@ class App extends Component {
         <Route exact path='/posts/:id' component={SinglePost} />
         <Route exact path='/authors' component={Authors} />
         <Route exact path='/authors/:id' component={SingleAuthor} />
+        <Route exact path='/about' component={About} />
         <Redirect from='/' to='/home' />
       </Switch>
     );
