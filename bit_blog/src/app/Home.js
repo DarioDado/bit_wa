@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import Header from './partials/Header';
 import Footer from './partials/Footer';
+import { PostList } from './posts/PostList';
 
 
 class Home extends Component {
@@ -22,7 +23,9 @@ class Home extends Component {
     return (
       <Fragment>
         <Header />
-        <main></main>
+        <main>
+          <PostList />
+        </main>
         <Footer />
       </Fragment>
     );

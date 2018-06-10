@@ -1,9 +1,8 @@
 import React from "react";
-import "./Header.css";
 
 const Header = (props) => {
     return (
-      <nav>
+      <nav className="light-blue darken-2">
         <div className="nav-wrapper container">
           <a href="#!" className="brand-logo">RND BLG</a>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
