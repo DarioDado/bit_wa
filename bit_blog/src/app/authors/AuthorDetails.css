@@ -1,0 +1,16 @@
+.basic-info, .address, .company {
+  padding: 10px 0;
+}
+
+.basic-info, .address {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.details iframe {
+  height: 250px;
+  width: 100%;
+}
+
+.data {
+  font-weight: bold;
+}
