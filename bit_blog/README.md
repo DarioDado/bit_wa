@@ -6,6 +6,7 @@ App
   <Route path='/posts/:id' component={SinglePost} />
   <Route path='/authors' component={Authors} />
   <Route path='/authors/:id' component={SingleAuthor} />
+  <Route path='/posts/new' component={CreatePost} />
   <Redirect from='/' to='/home' />
 </Switch>
 
@@ -46,4 +47,10 @@ about page /about
 
 <Header />
 <About />
+<Footer />
+
+crate post page /posts/new
+
+<Header />
+<NewPost />
 <Footer />
