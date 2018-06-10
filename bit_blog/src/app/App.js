@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
+import { Switch, Route, Redirect } from "react-router-dom"
+import Home from './Home';
 import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="container">
-        Caooo
-      </div>
+      <Switch>
+        <Route path='/home' component={Home} />
+        <Redirect from='/' to='/home' />
+      </Switch>
     );
   }
 }

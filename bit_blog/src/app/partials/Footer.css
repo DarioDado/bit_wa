@@ -1,0 +1,8 @@
+.page-footer {
+    padding-top: 0 !important;
+    background-color: #244288 !important;
+}
+
+.page-footer .footer-copyright {
+    background-color: transparent;
+}
