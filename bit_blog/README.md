@@ -23,7 +23,7 @@ home page /
 single post page /posts/:id
 
 <Header />
-<Post />
+<PostDetails />
 <RelatedPosts />
 <Footer />
 
