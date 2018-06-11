@@ -1,6 +1,4 @@
 import React, { Fragment, Component } from "react";
-import Header from "../partials/Header";
-import Footer from "../partials/Footer";
 import { AuthorDetails } from "./AuthorDetails";
 import { getSingleUser } from '../../services/userService';
 
@@ -34,9 +32,7 @@ class SingleAuthor extends Component {
   render() {
     return (
       <Fragment>
-      <Header />
-      {this.renderMainContent()}
-      <Footer />
+        {this.renderMainContent()}
       </Fragment>
     )
   }

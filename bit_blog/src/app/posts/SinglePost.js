@@ -1,6 +1,4 @@
-import React, { Fragment, Component } from "react";
-import Header from "../partials/Header";
-import Footer from "../partials/Footer";
+import React, { Component, Fragment } from "react";
 import { PostDetails } from "./PostDetails";
 import { RelatedPostList } from "./RelatedPostList";
 import { getSinglePost } from "../../services/postService";
@@ -11,14 +9,14 @@ class SinglePost extends Component {
     this.state = {
       post: null,
       loading: true
-    }  
+    }
   }
   componentDidMount = () => {
     const postId = this.props.match.params.id;
     getSinglePost(postId)
     .then(post => {
       this.setState({post, loading: false})
-    })  
+    })
   }
 
   componentWillReceiveProps = (nextProps) => {
@@ -39,15 +37,14 @@ class SinglePost extends Component {
                 <RelatedPostList post={post}/>
               </main>
     }
-  } 
-  
+  }
+
   render() {
     return (
-        <Fragment>
-        <Header />
-        {this.renderMainContent()}
-        <Footer />
-        </Fragment>
+      <Fragment>
+          {this.renderMainContent()}
+      </Fragment>
+
     )
   }
 }

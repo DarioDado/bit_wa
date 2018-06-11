@@ -1,6 +1,4 @@
-import React, { Component, Fragment } from 'react';
-import Header from './partials/Header';
-import Footer from './partials/Footer';
+import React, { Component } from 'react';
 import { PostList } from './posts/PostList';
 import { getPosts } from '../services/postService';
 
@@ -27,16 +25,12 @@ class Home extends Component {
 
   render() {
 
-    const {posts} = this.state; 
+    const {posts} = this.state;
 
     return (
-      <Fragment>
-        <Header />
         <main>
           <PostList posts={posts}/>
         </main>
-        <Footer />
-      </Fragment>
     );
   }
 }
