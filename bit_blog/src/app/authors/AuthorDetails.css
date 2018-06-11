@@ -18,3 +18,8 @@
 .container .author-name:hover {
   text-decoration: underline;
 }
+
+.profile-img img {
+  width: 100%;
+  max-width: 300px;
+}

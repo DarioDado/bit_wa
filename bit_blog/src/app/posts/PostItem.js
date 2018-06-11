@@ -3,14 +3,15 @@ import { Link } from "react-router-dom";
 import "./PostItem.css";
 
 export const PostItem = props => {
+    const {post} = props;
     return (
       <div className="col s12">
         <div className="card blue-grey darken-1">
           <div className="card-content white-text">
-            <Link to='/posts/1'>
-              <span className="card-title title">Card Title</span>
+            <Link to={`/posts/${post.id}`}>
+              <span className="card-title title">{post.title}</span>
             </Link>
-            <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+            <p>{post.body}</p>
           </div>
         </div>
       </div>

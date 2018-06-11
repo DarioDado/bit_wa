@@ -4,6 +4,7 @@ import Footer from "../partials/Footer";
 import { CreatePostForm } from "./CreatePostForm";
 
 const NewPost = (props) => {
+  // props.history.push('/');
     return (
       <Fragment>
       <Header />

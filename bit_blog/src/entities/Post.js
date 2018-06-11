@@ -5,4 +5,8 @@ export class Post {
         this.title = title;
         this.body = body;
     }
+
+    trimBody() {
+        return this.body.slice(0,15) + '...';
+    }
 }
