@@ -5,6 +5,7 @@ import SinglePost from './posts/SinglePost';
 import Authors from './authors/Authors';
 import SingleAuthor from './authors/SingleAuthor';
 import About from './About';
+import NewPost from './posts/NewPost';
 import './App.css';
 
 class App extends Component {
@@ -12,6 +13,7 @@ class App extends Component {
     return (
       <Switch>
         <Route path='/home' component={Home} />
+        <Route exact path='/posts/new' component={NewPost} />
         <Route exact path='/posts/:id' component={SinglePost} />
         <Route exact path='/authors' component={Authors} />
         <Route exact path='/authors/:id' component={SingleAuthor} />

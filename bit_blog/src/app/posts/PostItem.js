@@ -8,7 +8,7 @@ export const PostItem = props => {
         <div className="card blue-grey darken-1">
           <div className="card-content white-text">
             <Link to='/posts/1'>
-              <span className="card-title">Card Title</span>
+              <span className="card-title title">Card Title</span>
             </Link>
             <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
           </div>

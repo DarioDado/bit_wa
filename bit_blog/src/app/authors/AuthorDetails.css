@@ -14,3 +14,7 @@
 .data {
   font-weight: bold;
 }
+
+.container .author-name:hover {
+  text-decoration: underline;
+}

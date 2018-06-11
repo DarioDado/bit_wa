@@ -5,3 +5,7 @@
 .collection p:hover {
   background-color: #e0e0e0;
 }
+
+.post-list span.title:hover {
+  text-decoration: underline;
+}

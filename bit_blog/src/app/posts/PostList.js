@@ -13,7 +13,7 @@ export class PostList extends React.Component {
     render() {
 
         return (
-            <div className="container main-content">
+            <div className="container main-content post-list">
                 <h1 className="center blue-grey-text text-darken-1">Posts</h1>
                 <div className="row">
                   <PostItem />

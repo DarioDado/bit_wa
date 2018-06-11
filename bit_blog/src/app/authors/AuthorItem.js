@@ -7,7 +7,7 @@ export const AuthorItem = props => {
         <div className="card blue-grey darken-1">
           <div className="card-content white-text">
             <Link to='/authors/1'>
-              <span className="card-title">Name Surname</span>
+              <span className="card-title author-name">Name Surname</span>
             </Link>
           </div>
         </div>

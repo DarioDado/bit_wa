@@ -3,11 +3,22 @@
   font-size: 25px
 }
 
+.back-link:hover {
+  text-decoration: underline;
+}
+
 #author-name {
   margin: 20px 0;
   font-size: 20px;
 }
 
+#author-name:hover {
+  text-decoration: underline;
+}
+
 .related-posts-title {
   margin-top: 60px;
+}
+.btn {
+  margin-right: 10px;
 }
