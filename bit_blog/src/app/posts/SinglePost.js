@@ -14,35 +14,30 @@ class SinglePost extends Component {
   componentDidMount = () => {
     const postId = this.props.match.params.id;
     getSinglePost(postId)
-    .then(post => {
-      this.setState({post, loading: false})
-    })
+      .then(post => {
+        this.setState({ post, loading: false })
+      })
   }
 
   componentWillReceiveProps = (nextProps) => {
     const postId = nextProps.match.params.id;
     getSinglePost(postId)
-    .then(post => {
-      this.setState({post, loading: false})
-    })
-  }
-
-  renderMainContent = () => {
-    const {loading, post} = this.state;
-    if (loading) {
-      return <div className='loading'></div>
-    } else {
-      return <main className='container'>
-                <PostDetails post={post} />
-                <RelatedPostList post={post}/>
-              </main>
-    }
+      .then(post => {
+        this.setState({ post, loading: false })
+      })
   }
 
   render() {
+    const { loading, post } = this.state;
+    if (loading) {
+      return <div className='loading'></div>
+    }
     return (
       <Fragment>
-          {this.renderMainContent()}
+        <main className='container'>
+          <PostDetails post={post} />
+          <RelatedPostList post={post} />
+        </main>
       </Fragment>
 
     )

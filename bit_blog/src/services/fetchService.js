@@ -17,3 +17,17 @@ export const postData = (url, data) => {
   })
   .then(response => response.json())
 }
+
+
+export const deleteData = (url) => {
+  return fetch(url, {
+    cache: 'no-cache',
+    credentials: 'same-origin',
+    headers: {
+      'content-type': 'application/json'
+    },
+    method: 'DELETE',
+    mode: 'cors'
+  })
+  .then(response => response.json())
+}

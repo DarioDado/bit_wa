@@ -11,7 +11,12 @@ export const PostItem = props => {
             <Link to={`/posts/${post.id}`}>
               <span className="card-title title">{post.title}</span>
             </Link>
-            <p>{post.body}</p>
+            <p>{post.trimBody()}</p>
+          </div>
+          <div className="card-action">
+          <Link to={`/posts/${post.id}`}>
+            <span>Read more...</span>
+          </Link> 
           </div>
         </div>
       </div>

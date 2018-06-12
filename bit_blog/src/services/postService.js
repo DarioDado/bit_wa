@@ -1,4 +1,4 @@
-import { getData, postData } from './fetchService';
+import { getData, postData, deleteData } from './fetchService';
 import { endPoints } from '../shared/constants';
 import { Post } from '../entities/Post';
 
@@ -36,10 +36,24 @@ export const getRelatedPosts = (authorID, postId) => {
         });
 }
 
+export const getNumOfPostsByAuthor = (authorId) => {
+    const url = `${endPoints.getPosts}?userId=${authorId}`;
+    return getData(url)
+        .then(postsData => {           
+            return postsData.length;
+        })
+}
+
 export const savePost = (data) => {
   const url = endPoints.postPost;
   return postData(url, data)
     .then(createdPostData => {
-      return createdPostData;
+        const {id, userId, title, body} = createdPostData;
+        return new Post(id, userId, title, body);
     })
+}
+
+export const deletePost = (id) => {
+    const url = `${endPoints.deletePost}/${id}`;
+    return deleteData(url)
 }

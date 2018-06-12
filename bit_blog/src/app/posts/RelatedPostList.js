@@ -35,19 +35,29 @@ export class RelatedPostList extends Component {
       })
   }
 
+  renderNumOfRelPostsMsg = () => {
+    const {relatedPosts, loading} = this.state;
+    if (loading) {
+      return <p>...</p>
+    } else if (relatedPosts.length === 0) {
+      return null
+    } else {
+      return <h4 className='blue-grey-text text-darken-1 related-posts-title'>
+               {relatedPosts.length} {(relatedPosts.length === 1) ? "more post" : "more posts" } from same author
+              </h4>
+    }
+  }
+
   render() {
     const {relatedPosts, loading} = this.state;
     const relatedPostLinks = loading
       ? <div className='loading'></div>
       : this.renderRelatedPosts(relatedPosts);
 
-    const numRelPostsMsg = loading
-      ? ""
-      : <h4 className='blue-grey-text text-darken-1 related-posts-title'> {relatedPosts.length} more posts from same author</h4>
 
     return (
       <Fragment>
-        {numRelPostsMsg}
+        {this.renderNumOfRelPostsMsg()}
         <div className="collection">
           {relatedPostLinks}
         </div>

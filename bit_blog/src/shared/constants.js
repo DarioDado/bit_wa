@@ -1,5 +1,6 @@
 export const endPoints = {
-    getPosts: "https://jsonplaceholder.typicode.com/posts",
-    getUsers: "https://jsonplaceholder.typicode.com/users",
-    postPost: "https://jsonplaceholder.typicode.com/posts"
+    getPosts: "http://localhost:3000/posts",
+    getUsers: "http://localhost:3000/authors",
+    postPost: "http://localhost:3000/posts",
+    deletePost: "http://localhost:3000/posts"
 }

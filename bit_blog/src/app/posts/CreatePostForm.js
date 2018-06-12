@@ -9,15 +9,12 @@ export class CreatePostForm extends Component {
     this.state = {
       title: "",
       body: "",
+      userId: 1,
       data: null
     }
   }
 
-  onChangeTitleHandler = e => {
-    this.setState({[e.target.name]: e.target.value})
-  }
-
-  onChangeBodyHandler = e => {
+  onChangeInputHandler = e => {
     this.setState({[e.target.name]: e.target.value})
   }
 
@@ -27,15 +24,13 @@ export class CreatePostForm extends Component {
 
   onSavePostHandler = () => {
     const history = createHashHistory();
-    const {title, body} = this.state;
+    const {userId, title, body} = this.state;
     this.setState({
-      data: {title, body}
+      data: {userId, title, body}
     }, () => {
       savePost(this.state.data)
         .then((savedPost) => {
-          console.log(savedPost);
-          console.log(this);
-          history.push('/');
+          history.push(`/posts/${savedPost.id}`);
         } )
     })
   }
@@ -51,7 +46,7 @@ export class CreatePostForm extends Component {
                 <input
                   name="title"
                   value={this.state.title}
-                  onChange={this.onChangeTitleHandler}
+                  onChange={this.onChangeInputHandler}
                   placeholder="Title"
                   type="text"
                 />
@@ -62,7 +57,7 @@ export class CreatePostForm extends Component {
                 <textarea
                   name="body"
                   value={this.state.body}
-                  onChange={this.onChangeBodyHandler}
+                  onChange={this.onChangeInputHandler}
                   placeholder="Content"
                   className="materialize-textarea">
                 </textarea>
