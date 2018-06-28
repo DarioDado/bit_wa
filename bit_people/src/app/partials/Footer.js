@@ -6,7 +6,7 @@ import { getLastUpdate } from '../../services/userService';
 
 const Footer = (props) => {
     const lastUpdate = getLastUpdate();
-    const timeFromLastUpdate = Moment(lastUpdate).fromNow(); 
+    const timeFromLastUpdate = lastUpdate ? Moment(lastUpdate).fromNow() : "Never updated"; 
     return (
 
         <footer className="page-footer">

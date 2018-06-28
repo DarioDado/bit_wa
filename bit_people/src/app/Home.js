@@ -20,6 +20,7 @@ class Home extends Component {
   loadUsers = () => {
     getUsers()
       .then(users => {
+        console.log(users);
         this.setState({ users, loading: false });
         saveUsers(users);
       })

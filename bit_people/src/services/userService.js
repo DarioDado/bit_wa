@@ -5,19 +5,21 @@ export const getUsers = () => {
     return fetch(constants.mainEndPoint)
         .then(res => res.json())
         .then(usersData => {
+            console.log(usersData);
             return usersData.results.map(user => {
-                return new User (user.id, user.gender, user.picture, user.name.first, user.name.last, user.email, user.dob);
+                return new User (user.id, user.gender, user.picture, user.name.first, user.name.last, user.email, user.dob.date);
             });
         });
 }
 
 export const saveUsers = users => {
+    // console.log(users);
     window.localStorage.setItem('users', JSON.stringify(users));
 }
 
 export const getUsersFromStorage = () => {
     const users = JSON.parse(window.localStorage.getItem('users'));
-    console.log(users);
+    // console.log(users);
     if (!users) {
         return false;
     } else {
@@ -41,7 +43,9 @@ export const setLastUpdate = () => {
 }
 
 export const getLastUpdate = () => {
-    return new Date(window.localStorage.getItem('lastUpdate'));
+    return window.localStorage.getItem('lastUpdate')
+        ? new Date(window.localStorage.getItem('lastUpdate'))
+        : false;
 }
 
 export const getGenderStats = (users) => {
