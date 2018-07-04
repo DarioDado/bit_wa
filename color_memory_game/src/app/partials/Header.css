@@ -1,0 +1,33 @@
+header {
+    display: flex;
+    background-color: #AA3939;
+    color: white;
+    padding: 0 30px;
+    justify-content: space-between;
+}
+
+.main-menu {
+    display: flex;
+    justify-content: center;
+}
+
+.main-menu p {
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    height: 100%;
+    margin: 0;
+}
+
+.main-menu p:hover {
+    background-color: #D46A6A;
+}
+
+.logo h3 {
+    align-self: center;
+    text-transform: uppercase;
+    font-weight: bold;
+}
