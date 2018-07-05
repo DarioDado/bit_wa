@@ -1,0 +1,20 @@
+.level-options {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.level-option {
+    background-color: #AA3939;
+    margin: 10px;
+    padding: 20px;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.level-option:hover {
+    background-color: #D46A6A;
+}

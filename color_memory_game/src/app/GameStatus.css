@@ -1,0 +1,14 @@
+.attempts-status {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.attempts-msg {
+    font-size: 30px;
+    text-transform: uppercase;
+}
+
+.number {
+    color: #AA3939;
+}
