@@ -16,11 +16,17 @@ class App extends Component {
     }
   }
 
+  isSolved = index => {
+    return this.state.fields[index].solved;
+  }
+
   isFinished = () => {
     return this.state.fields.every(field => field.show);
   }
 
   handleChangeLevel = e => {
+    document.getElementsByClassName("selected")[0].classList.remove("selected");
+    e.target.classList.add("selected");
     const level = e.target.textContent;
     let numberOfFields;
     if (level === "Easy") {
@@ -38,7 +44,7 @@ class App extends Component {
   loadNewGame = () => {
     const colors = this.getRandColors();
     const fields = colors.map(color => {
-      return {color, show: false}
+      return {color, show: false, solved: false}
     })
     const guessIds = [];
     const numberOfAttempts = 0;
@@ -47,9 +53,9 @@ class App extends Component {
   }
 
   handleGuess = e => {
-    const guessId = Number(e.target.parentNode.id);
-
-    if (this.state.guessIds.length >= 2 || this.state.gameOver) {
+    const guessId = (e.target.tagName === "IMG") ? Number(e.target.parentNode.id) : Number(e.target.id);
+    
+    if (this.state.guessIds.length >= 2 || this.state.gameOver || this.isSolved(guessId)) {
       return
     }
     const guessIds = [...this.state.guessIds, guessId];
@@ -74,9 +80,15 @@ class App extends Component {
             this.setState({fields: newFields, guessIds: newGuessIds});
           }, 500)
         } else {
+          const newFields = this.state.fields.map((field,i) => {
+            if (i === this.state.guessIds[0] || i === this.state.guessIds[1]) {
+              return {...field, solved: true}
+            }
+            return field;
+          });
           const gameOver = this.isFinished();
           const newGuessIds = [];
-          this.setState({guessIds: newGuessIds, gameOver});
+          this.setState({guessIds: newGuessIds, fields: newFields, gameOver});
         }
       }
     });
@@ -109,7 +121,7 @@ class App extends Component {
   componentDidMount = () => {
     const colors = this.getRandColors();
     const fields = colors.map(color => {
-      return {color, show: false}
+      return {color, show: false, solved: false}
     })
     this.setState({fields});
   }

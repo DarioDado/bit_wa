@@ -18,3 +18,7 @@
 .level-option:hover {
     background-color: #D46A6A;
 }
+
+.selected {
+    background-color: #D46A6A;
+}
